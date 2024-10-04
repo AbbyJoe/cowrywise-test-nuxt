@@ -66,7 +66,7 @@
         const imagesData = await $axios.get(`?query=${props.query || 'Nigeria'}`);
         const fetchedImages = imagesData?.data?.results;
 
-        images.value = fetchedImages.map((image: any) => {
+        images.value = fetchedImages?.map((image: any) => {
             return {
                 ...image,
                 spanSize: Math.ceil(Math.random() * 3) + 3,

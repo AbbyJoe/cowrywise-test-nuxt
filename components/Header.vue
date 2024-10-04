@@ -77,6 +77,7 @@
         &-back__button {
             border: 0;
             background: none;
+            cursor: pointer;
         }
     }
     .searched-query {

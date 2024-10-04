@@ -64,7 +64,7 @@
     try {
         generalStore.setLoading(true)
         const imagesData = await $axios.get(`?query=${props.query || 'Nigeria'}`);
-        const fetchedImages = imagesData.data.results;
+        const fetchedImages = imagesData?.data?.results;
 
         images.value = fetchedImages.map((image: any) => {
             return {

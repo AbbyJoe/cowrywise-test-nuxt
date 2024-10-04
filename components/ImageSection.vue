@@ -37,9 +37,9 @@
   </template>
   
   <script lang="ts" setup>
+  import axios from 'axios'
   import { useGeneralStore } from '~/store/general'
   const generalStore = useGeneralStore()
-  const { $axios } = useNuxtApp()
   const props = defineProps({
     query: {
       type: String,
@@ -61,9 +61,10 @@
   };
   
   const loadFromUnsplash = async () => {
+    const runtimeConfig = useRuntimeConfig().public
     try {
         generalStore.setLoading(true)
-        const imagesData = await $axios.get(`?query=${props.query || 'Nigeria'}`);
+        const imagesData = await axios.get(`${runtimeConfig.BASE_URL}?query=${props.query || 'Nigeria'}`, { headers: { Authorization: `Client-ID ${runtimeConfig.UNSPLASH_ACCESS_KEY}` }});
         const fetchedImages = imagesData?.data?.results;
 
         images.value = fetchedImages.map((image: any) => {
